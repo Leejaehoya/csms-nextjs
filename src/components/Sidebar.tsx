@@ -53,9 +53,10 @@ export default function Sidebar() {
 
   return (
     <div 
-      className="hidden lg:flex bg-white shadow-lg border-r border-gray-200 flex-col fixed left-0 h-screen z-30 transition-all duration-300" 
+      className={`hidden lg:flex bg-white shadow-lg border-r border-gray-200 flex-col fixed left-0 h-screen z-30 transition-all duration-300 ${
+        sidebarCollapsed ? 'w-20' : 'w-64'
+      }`}
       style={{
-        width: sidebarCollapsed ? '80px' : '256px',
         top: '64px', // TopNavbar 높이만큼 아래로 이동
         height: 'calc(100vh - 64px)' // 전체 높이에서 TopNavbar 높이만큼 빼기
       }}
@@ -69,8 +70,8 @@ export default function Sidebar() {
               <button 
                 key={item.path}
                 onClick={() => router.push(item.path)}
-                className={`w-full flex items-center px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
-                  sidebarCollapsed ? 'justify-center' : 'gap-3'
+                className={`w-full flex items-center px-3 py-2 rounded-lg font-medium transition-all duration-200 text-sm ${
+                  sidebarCollapsed ? 'justify-center' : 'gap-2'
                 } ${
                   item.isActive 
                     ? 'bg-indigo-50 text-indigo-600' 
@@ -78,8 +79,8 @@ export default function Sidebar() {
                 }`}
                 title={sidebarCollapsed ? item.label : ""}
               >
-                <Icon className="w-5 h-5 flex-shrink-0" />
-                {!sidebarCollapsed && <span className="truncate">{item.label}</span>}
+                <Icon className="w-4 h-4 flex-shrink-0" />
+                {!sidebarCollapsed && <span className="truncate text-xs lg:text-sm">{item.label}</span>}
               </button>
             );
           })}
@@ -90,13 +91,13 @@ export default function Sidebar() {
         <div className="p-4 border-t border-gray-200">
           <button 
             onClick={toggleSidebar}
-            className={`w-full flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-all duration-200 ${
+            className={`w-full flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-all duration-200 text-sm ${
               sidebarCollapsed ? 'justify-center' : 'gap-2'
             }`}
             title={sidebarCollapsed ? "사이드바 확장" : "사이드바 축소"}
           >
             <Menu className="w-4 h-4 flex-shrink-0" />
-            {!sidebarCollapsed && <span className="truncate">사이드바 축소</span>}
+            {!sidebarCollapsed && <span className="truncate text-xs lg:text-sm">사이드바 축소</span>}
           </button>
         </div>
     </div>

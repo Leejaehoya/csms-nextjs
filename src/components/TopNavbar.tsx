@@ -106,13 +106,13 @@ export default function TopNavbar() {
                 <Menu className="w-5 h-5" />
               </button>
               
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-emerald-500 rounded-xl flex items-center justify-center">
-                  <Zap className="w-6 h-6 text-white" />
+              <div className="flex items-center gap-2 lg:gap-3">
+                <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-indigo-500 to-emerald-500 rounded-xl flex items-center justify-center">
+                  <Zap className="w-4 h-4 lg:w-6 lg:h-6 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-gray-900">CSMS</h1>
-                  <p className="text-sm text-gray-500">Charging Station Management System</p>
+                  <h1 className="text-lg lg:text-xl font-bold text-gray-900">CSMS</h1>
+                  <p className="text-xs lg:text-sm text-gray-500 hidden sm:block">Charging Station Management System</p>
                 </div>
               </div>
             </div>
@@ -123,12 +123,12 @@ export default function TopNavbar() {
               <div className="relative">
                 <button
                   onClick={() => setIsLogsOpen(!isLogsOpen)}
-                  className="relative p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="relative p-1.5 lg:p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
                   aria-label="시스템 로그"
                 >
-                  <Bell className="w-5 h-5" />
+                  <Bell className="w-4 h-4 lg:w-5 lg:h-5" />
                   {(errorCount > 0 || warningCount > 0) && (
-                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 lg:w-5 lg:h-5 flex items-center justify-center font-medium">
                       {errorCount + warningCount}
                     </span>
                   )}
@@ -136,33 +136,33 @@ export default function TopNavbar() {
 
                 {/* 로그 드롭다운 */}
                 {isLogsOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
-                    <div className="p-4 border-b border-gray-200">
+                  <div className="absolute right-0 top-full mt-2 w-72 lg:w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                    <div className="p-3 lg:p-4 border-b border-gray-200">
                       <div className="flex items-center justify-between">
-                        <h3 className="font-semibold text-gray-900">시스템 로그</h3>
+                        <h3 className="font-semibold text-gray-900 text-sm lg:text-base">시스템 로그</h3>
                         <button
                           onClick={() => setIsLogsOpen(false)}
                           className="p-1 hover:bg-gray-100 rounded transition-colors"
                         >
-                          <X className="w-4 h-4 text-gray-500" />
+                          <X className="w-3 h-3 lg:w-4 lg:h-4 text-gray-500" />
                         </button>
                       </div>
                     </div>
                     
                     <div className="max-h-80 overflow-y-auto">
                       {logs.length === 0 ? (
-                        <div className="p-8 text-center text-gray-500">
-                          <Bell className="w-8 h-8 mx-auto mb-2 text-gray-300" />
-                          <p>로그가 없습니다</p>
+                        <div className="p-6 lg:p-8 text-center text-gray-500">
+                          <Bell className="w-6 h-6 lg:w-8 lg:h-8 mx-auto mb-2 text-gray-300" />
+                          <p className="text-xs lg:text-sm">로그가 없습니다</p>
                         </div>
                       ) : (
                         <div className="divide-y divide-gray-100">
                           {logs.map((log) => (
                             <div
                               key={log.id}
-                              className={`p-3 border-l-4 ${getLogBgColor(log.type)}`}
+                              className={`p-2 lg:p-3 border-l-4 ${getLogBgColor(log.type)}`}
                             >
-                              <div className="flex items-start gap-3">
+                              <div className="flex items-start gap-2 lg:gap-3">
                                 <div className="flex-shrink-0 mt-0.5">
                                   {getLogIcon(log.type)}
                                 </div>
@@ -175,7 +175,7 @@ export default function TopNavbar() {
                                       {formatTime(log.timestamp)}
                                     </span>
                                   </div>
-                                  <p className="text-sm text-gray-700">
+                                  <p className="text-xs lg:text-sm text-gray-700">
                                     {log.message}
                                   </p>
                                 </div>
@@ -186,17 +186,19 @@ export default function TopNavbar() {
                       )}
                     </div>
                     
-                    <div className="p-3 border-t border-gray-200 bg-gray-50">
+                    <div className="p-2 lg:p-3 border-t border-gray-200 bg-gray-50">
                       <div className="flex items-center justify-between text-xs text-gray-500">
                         <span>총 {logs.length}개 로그</span>
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2 lg:gap-4">
                           <span className="flex items-center gap-1">
-                            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                            오류 {errorCount}개
+                            <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-red-500 rounded-full"></div>
+                            <span className="hidden sm:inline">오류 {errorCount}개</span>
+                            <span className="sm:hidden">{errorCount}</span>
                           </span>
                           <span className="flex items-center gap-1">
-                            <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                            경고 {warningCount}개
+                            <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-yellow-500 rounded-full"></div>
+                            <span className="hidden sm:inline">경고 {warningCount}개</span>
+                            <span className="sm:hidden">{warningCount}</span>
                           </span>
                         </div>
                       </div>
@@ -206,8 +208,8 @@ export default function TopNavbar() {
               </div>
 
               {/* 설정 버튼 */}
-              <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
-                <Settings className="w-5 h-5" />
+              <button className="p-1.5 lg:p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
+                <Settings className="w-4 h-4 lg:w-5 lg:h-5" />
               </button>
             </div>
           </div>
@@ -219,19 +221,19 @@ export default function TopNavbar() {
         <div className="fixed inset-0 z-40 lg:hidden">
           <div className="fixed inset-0 bg-black bg-opacity-50" onClick={() => setIsMobileMenuOpen(false)}></div>
           <div className="fixed left-0 top-0 h-full w-64 bg-white shadow-lg">
-            <div className="p-4 border-b border-gray-200">
+            <div className="p-3 lg:p-4 border-b border-gray-200">
               <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-gray-900">메뉴</h2>
+                <h2 className="text-base lg:text-lg font-semibold text-gray-900">메뉴</h2>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="p-1.5 lg:p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4 lg:w-5 lg:h-5" />
                 </button>
               </div>
             </div>
-            <div className="p-4">
-              <p className="text-gray-500">모바일 메뉴 내용</p>
+            <div className="p-3 lg:p-4">
+              <p className="text-xs lg:text-sm text-gray-500">모바일 메뉴 내용</p>
             </div>
           </div>
         </div>
