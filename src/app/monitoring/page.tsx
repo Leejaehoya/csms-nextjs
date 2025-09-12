@@ -221,7 +221,7 @@ export default function DashboardPage() {
             <select
               value={filters.city}
               onChange={(e) => handleFilterChange('city', e.target.value)}
-              className="w-full px-3 py-2 lg:px-4 lg:py-3 border-2 border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:border-blue-500 focus:outline-none transition-all duration-200 text-xs lg:text-sm"
+              className="w-full text-xs lg:text-sm"
             >
               <option value="">전체</option>
               <option value="서울특별시">서울특별시</option>
@@ -234,7 +234,7 @@ export default function DashboardPage() {
             <select
               value={filters.district}
               onChange={(e) => handleFilterChange('district', e.target.value)}
-              className="w-full px-3 py-2 lg:px-4 lg:py-3 border-2 border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:border-blue-500 focus:outline-none transition-all duration-200 text-xs lg:text-sm"
+              className="w-full text-xs lg:text-sm"
             >
               <option value="">전체</option>
             </select>
@@ -244,7 +244,7 @@ export default function DashboardPage() {
             <select
               value={filters.subDistrict}
               onChange={(e) => handleFilterChange('subDistrict', e.target.value)}
-              className="w-full px-3 py-2 lg:px-4 lg:py-3 border-2 border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:border-blue-500 focus:outline-none transition-all duration-200 text-xs lg:text-sm"
+              className="w-full text-xs lg:text-sm"
             >
               <option value="">전체</option>
             </select>

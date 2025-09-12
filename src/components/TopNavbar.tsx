@@ -94,9 +94,8 @@ export default function TopNavbar() {
   return (
     <>
       {/* 상단 고정 네비게이션 바 */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-200">
-        <div className="px-4 lg:px-6 py-3">
-          <div className="flex items-center justify-between">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-blue-50 border-b border-blue-100 h-16">
+          <div className="px-4 lg:px-6 h-full flex items-center justify-between">
             {/* 왼쪽: 로고 및 브랜딩 */}
             <div className="flex items-center gap-4">
               <button
@@ -212,7 +211,6 @@ export default function TopNavbar() {
                 <Settings className="w-4 h-4 lg:w-5 lg:h-5" />
               </button>
             </div>
-          </div>
         </div>
       </div>
 

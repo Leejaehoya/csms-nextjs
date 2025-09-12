@@ -9,7 +9,8 @@ import {
   Battery, 
   MapPin as Location, 
   LogOut,
-  Menu
+  Menu,
+  FileText
 } from 'lucide-react';
 import { useSidebar } from '@/contexts/SidebarContext';
 
@@ -21,39 +22,45 @@ export default function Sidebar() {
   const navigationItems = [
     { 
       icon: Monitor, 
-      label: '통합정보화면', 
-      path: '/dashboard',
-      isActive: pathname === '/dashboard'
+      label: 'Monitoring', 
+      path: '/monitoring',
+      isActive: pathname === '/monitoring'
     },
     { 
       icon: Plug, 
-      label: 'EVSE 가용성', 
+      label: 'Availability', 
       path: '/availability',
       isActive: pathname === '/availability'
     },
     { 
       icon: Power, 
-      label: '충전소 제어', 
-      path: '/control',
-      isActive: pathname === '/control'
+      label: 'Configuration', 
+      path: '/configuration',
+      isActive: pathname === '/configuration'
+    },
+    { 
+      icon: FileText, 
+      label: 'Logs', 
+      path: '/logs',
+      isActive: pathname === '/logs'
     },
     { 
       icon: Battery, 
-      label: '충전소 ESS 확인', 
+      label: 'ESS', 
       path: '/ess',
       isActive: pathname === '/ess'
     },
     { 
       icon: Location, 
-      label: '충전소 현황', 
-      path: '/status',
-      isActive: pathname === '/status'
+      label: 'Utility', 
+      path: '/utility',
+      isActive: pathname === '/utility'
     }
   ];
 
   return (
     <div 
-      className={`hidden lg:flex bg-white shadow-lg border-r border-gray-200 flex-col fixed left-0 h-screen z-30 transition-all duration-300 ${
+      className={`hidden lg:flex bg-blue-50 shadow-lg border-r border-blue-100 flex-col fixed left-0 h-screen z-30 transition-all duration-300 ${
         sidebarCollapsed ? 'w-20' : 'w-64'
       }`}
       style={{
@@ -88,7 +95,7 @@ export default function Sidebar() {
       </nav>
 
         {/* 하단 축소 버튼 */}
-        <div className="p-4 border-t border-gray-200">
+        <div className="p-4 border-t border-blue-100">
           <button 
             onClick={toggleSidebar}
             className={`w-full flex items-center px-3 py-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-all duration-200 text-sm ${

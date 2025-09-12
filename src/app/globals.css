@@ -11,6 +11,14 @@
   --success: #22c55e;
   --warning: #f59e0b;
   --error: #ef4444;
+  
+  /* 드롭다운 전용 색상 변수 */
+  --dropdown-bg: #ffffff;
+  --dropdown-text: #111827;
+  --dropdown-border: #d1d5db;
+  --dropdown-border-hover: #3b82f6;
+  --dropdown-border-focus: #3b82f6;
+  --dropdown-focus-ring: rgba(59, 130, 246, 0.2);
 }
 
 @theme inline {
@@ -109,5 +117,71 @@ a {
   
   .gradient-bg {
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  }
+}
+
+/* ========================================
+   전역 드롭다운 스타일
+   ======================================== */
+
+/* 기본 드롭다운 스타일 */
+select {
+  /* 배경 및 텍스트 */
+  background-color: var(--dropdown-bg);
+  color: var(--dropdown-text);
+  
+  /* 테두리 및 모양 */
+  border: 1px solid var(--dropdown-border);
+  border-radius: 6px;
+  
+  /* 내부 여백 및 폰트 */
+  padding: 8px 12px;
+  font-size: 14px;
+  
+  /* 전환 효과 */
+  transition: all 0.2s ease;
+}
+
+/* 호버 상태 */
+select:hover {
+  border-color: var(--dropdown-border-hover);
+}
+
+/* 포커스 상태 */
+select:focus {
+  outline: none;
+  border-color: var(--dropdown-border-focus);
+  box-shadow: 0 0 0 3px var(--dropdown-focus-ring);
+}
+
+/* 드롭다운 옵션 스타일 */
+select option {
+  background-color: var(--dropdown-bg);
+  color: var(--dropdown-text);
+  padding: 8px 12px;
+}
+
+
+/* ========================================
+   다크 모드 드롭다운 스타일
+   ======================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* 다크 모드용 드롭다운 색상 */
+    --dropdown-bg: var(--background);
+    --dropdown-text: var(--foreground);
+    --dropdown-border: var(--border);
+  }
+  
+  /* 다크 모드에서는 기본 변수 사용 */
+  select {
+    background-color: var(--dropdown-bg) !important;
+    color: var(--dropdown-text) !important;
+    border-color: var(--dropdown-border) !important;
+  }
+  
+  select option {
+    background-color: var(--dropdown-bg);
+    color: var(--dropdown-text);
   }
 }
