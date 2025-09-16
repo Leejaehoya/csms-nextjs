@@ -1,9 +1,21 @@
 import { NextResponse } from 'next/server';
-import { ChargingStationQueries, convertArrayToLegacyFormat } from '@/lib/queries';
+import { EvseQueries } from '@/lib/queries';
 import { testConnection } from '@/lib/database';
 
-export async function GET() {
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
   try {
+    const stationId = parseInt(params.id);
+    
+    if (isNaN(stationId)) {
+      return NextResponse.json(
+        { error: '유효하지 않은 충전소 ID입니다.' },
+        { status: 400 }
+      );
+    }
+
     // 데이터베이스 연결 테스트
     const isConnected = await testConnection();
     if (!isConnected) {
@@ -13,13 +25,10 @@ export async function GET() {
       );
     }
 
-    // 데이터베이스에서 충전소 데이터 조회
-    const stations = await ChargingStationQueries.getAllStations();
-    
-    // 레거시 형식으로 변환
-    const legacyStations = convertArrayToLegacyFormat(stations);
+    // 충전소의 EVSE 목록 조회
+    const evses = await EvseQueries.getEvsesByStationId(stationId);
 
-    return NextResponse.json(legacyStations);
+    return NextResponse.json(evses);
   } catch (error) {
     console.error('API Error:', error);
     return NextResponse.json(
